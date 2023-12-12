@@ -53,8 +53,7 @@ export class UsersService {
       const findData = new APIFeatures(this.userModel.find(), query || {})
         .filter()
         .paginate()
-        .sort()
-        .search();
+        .sort();
       const data = await findData.query;
       return data;
     } catch (error) {

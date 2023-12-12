@@ -42,22 +42,4 @@ export class APIFeatures {
 
     return this;
   }
-
-  search() {
-    const regex = new RegExp(this.queryString.search, 'i');
-    // eslint-disable-next-line no-nested-ternary
-    const name =
-      'firstname' in this.query.schema.paths
-        ? 'firstname'
-        : 'lastname' in this.query.schema.paths
-          ? 'lastname'
-          : 'email';
-    const keyword = this.queryString.search
-      ? {
-          $or: [{ $or: [{ [name]: regex }] }],
-        }
-      : {};
-    this.query = this.query.find({ ...keyword });
-    return this;
-  }
 }
